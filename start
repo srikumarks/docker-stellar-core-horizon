@@ -36,6 +36,8 @@ function main() {
     echo "stop_postgres done"
 
 	# launch services
+	touch /src/repo/git-daemon-export-ok
+	git daemon --detach --enable=receive-pack --export-all --reuseaddr --base-path=/src/
 	exec_supervisor
 }
 

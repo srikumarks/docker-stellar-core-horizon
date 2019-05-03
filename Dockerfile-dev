@@ -74,6 +74,16 @@ ADD pubnet /opt/stellar-default/pubnet
 ADD testnet /opt/stellar-default/testnet
 ADD standalone /opt/stellar-default/standalone
 
+# We run git daemon on the downloaded repository, so that you 
+# can check out the code from outside the container and commit
+# to it.
+#
+# git clone git://$ZaggIPAddress/repo
+#
+# where ZaggIPAddress is obtained using -
+# ZaggIPAddress=`docker inspect --format='{{.NetworkSettings.IPAddress}}' zagg`
+EXPOSE 9418
+
 ADD start /
 RUN ["chmod", "+x", "start"]
 
