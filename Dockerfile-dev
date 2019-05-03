@@ -8,7 +8,7 @@
 # docker build -t zagg-dev-base -f Dockerfile-dev-base .
 # docker build -t zagg-dev -f Dockerfile-dev
 # =====================================================================
-FROM stellar-dev-base
+FROM zagg-dev-base
 
 MAINTAINER Srikumar Subramanian <srikumarks@gmail.com>
 
@@ -50,6 +50,8 @@ RUN mkdir -p /src \
         && echo "SKIPPING make check ..." \
         && make install
 
+# Needed for running the container
+RUN apt-get install -y rsync
 
 # =================== REST OF SETUP ======================
 
