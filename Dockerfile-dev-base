@@ -1,0 +1,29 @@
+# This container is an Ubuntu based starting for a dev setup
+# to build stellar-core.
+#
+# Build using -
+# docker build -t zagg-dev-base -f Dockerfile-dev-base .
+
+FROM ubuntu:latest
+
+MAINTAINER Srikumar Subramanian <srikumarks@gmail.com>
+
+RUN apt-get update && apt-get install -y software-properties-common && apt-get update
+
+RUN apt-get install -y \
+        wget \
+        gnupg \
+        git \
+        build-essential \
+        pkg-config \
+        autoconf \
+        automake \
+        libtool \
+        bison \
+        flex \
+        libpq-dev \
+        clang-5.0 \
+        gcc-6 \
+        pandoc \
+        parallel
+

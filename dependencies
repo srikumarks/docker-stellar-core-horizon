@@ -1,6 +1,13 @@
 #! /usr/bin/env bash
 set -e
 
+# This is needed before the lines that follow because those install
+# tzdata as a dependency which gets into an interactive mode asking
+# for the region and stalling the docker build. Doing it ahead and
+# in "noninteractive" mode avoids that, though I'm not sure what region
+# actually gets selected!
+DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
+
 # dependencies
 apt-get update
 apt-get install -y curl git libpq-dev libsqlite3-dev libsasl2-dev postgresql-client postgresql postgresql-contrib sudo vim zlib1g-dev supervisor \
